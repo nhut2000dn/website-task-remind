@@ -1,0 +1,49 @@
+<!-- 
+CREATE TABLE `account` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`username` varchar(255) NOT NULL,
+	`password` varchar(255) NOT NULL,
+	`email` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `task_remind` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`id_account` INT NOT NULL,
+	`name_task` varchar(255) NOT NULL,
+	`note_task` varchar(2000),
+	`level_task` INT NOT NULL,
+	`date_create` DATETIME NOT NULL,
+	`deadline` DATETIME NOT NULL,
+	`time_reminder` TIME NOT NULL,
+	`check_mark` INT NOT NULL,
+	`status` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `task_level` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`name_level` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+ALTER TABLE `task_remind` ADD CONSTRAINT `task_remind_fk0` FOREIGN KEY (`id_account`) REFERENCES `account`(`id`);
+
+ALTER TABLE `task_remind` ADD CONSTRAINT `task_remind_fk1` FOREIGN KEY (`level_task`) REFERENCES `task_level`(`id`);
+
+
+
+INSERT INTO `account` (`id`, `username`, `password`, `email`) VALUES (NULL, 'nhutpro', 'Nhutpro92', 'nhnhut.18it4@sict.udn.vn');
+INSERT INTO `account` (`id`, `username`, `password`, `email`) VALUES (NULL, 'binh', 'Binh123456', 'binh.18it4@sict.udn.vn');
+
+INSERT INTO `task_level` (`id`, `name_level`) VALUES ('1', 'low'), ('2', 'medium');
+INSERT INTO `task_level` (`id`, `name_level`) VALUES ('3', 'high'), ('4', 'very high');
+INSERT INTO `task_level` (`id`, `name_level`) VALUES ('5', 'most important');
+
+INSERT INTO `task_remind` (`id`, `id_account`, `name_task`, `note_task`, `level_task`, `date_create`, `deadline`, `time_reminder`, `check_mark`, `status`) VALUES 
+(NULL, '1', 'Go to cinema with my dog', 'go before friday', '2', '2019-10-05 09:20:00', '2019-10-09 04:24:25', '12:00:00', '0', '0');
+INSERT INTO `task_remind` (`id`, `id_account`, `name_task`, `note_task`, `level_task`, `date_create`, `deadline`, `time_reminder`, `check_mark`, `status`) VALUES 
+(NULL, '2', 'Go to the beach', 'go to in the sun day', '1', '2019-10-05 00:00:00', '2019-10-10 00:00:00', '11:00:00', '0', '0');
+INSERT INTO `task_remind` (`id`, `id_account`, `name_task`, `note_task`, `level_task`, `date_create`, `deadline`, `time_reminder`, `check_mark`, `status`) VALUES 
+(NULL, '1', 'Go to school at tomorrow', 'no important', '3', '2019-10-06 09:23:13', '2019-10-07 00:00:00', '19:07:00', '1', '0');
+-->
